@@ -24,7 +24,7 @@
     // Tone stuff
     $effect(() => {
         if (generator !== null) {
-           generator.setLFO(left / 100, top / 1000);
+           generator.setLFO(left / 50, top / 500);
         }
     });
 </script>
