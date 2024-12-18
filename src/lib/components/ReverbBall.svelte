@@ -24,7 +24,7 @@
     // Tone stuff
     $effect(() => {
         if (generator !== null) {
-            generator.setReverb(left / 10, top / 50);
+            generator.setReverb(left / 50, top / 50);
         }
     });
 </script>

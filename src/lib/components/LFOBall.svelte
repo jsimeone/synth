@@ -1,5 +1,5 @@
 <script>
-    let { oscillator, children } = $props();
+    let { generator, children } = $props();
 
     let left = $state(600);
     let top = $state(500);
@@ -23,13 +23,8 @@
 
     // Tone stuff
     $effect(() => {
-        if (oscillator == null) {
-            console.log("No oscillator found.");
-        } else {
-            oscillator.set({
-                frequency: left,
-                volume: (-top / 25) + 0.1
-            });
+        if (generator !== null) {
+           generator.setLFO(left / 100, top / 1000);
         }
     });
 </script>

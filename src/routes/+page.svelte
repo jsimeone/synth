@@ -4,6 +4,7 @@
     import HighLowPassBall from "$lib/components/HighLowPassBall.svelte";
     import ReverbBall from "$lib/components/ReverbBall.svelte";
     import LFOBall from "$lib/components/LFOBall.svelte";
+    import * as Tone from "tone";
 
     let toneGenerator = null;
     let running = false;
@@ -12,6 +13,7 @@
         if (toneGenerator === null) {
             toneGenerator = new ToneGenerator();
             toggleState();
+            Tone.start();
         } else {
             if (toneGenerator.running) {
                 toneGenerator.stop();
@@ -37,22 +39,25 @@
         <div>
             <h1 class="font-bold text-5xl text-slate-900">web synth</h1>
             <p class="text-slate-600 text-xl mt-2">music 270 final project with Professor Ryan Carter</p>
-            <div class="flex">
+            <div class="flex ml-1">
                 <button
                         class="bg-gradient-to-r {running ? 'from-red-500 to-red-400' : 'from-violet-500 to-violet-400'} hover:opacity-90 px-3 py-2 transition-all duration-300 mt-2 rounded-sm"
                         onclick={toggleState}
                 >{running ? "pause" : "begin"}</button>
                 <p class="flex justify-center items-center text-gray-500 ml-5 pt-2">toggle generation</p>
             </div>
-            <div class="flex">
+            <div class="flex ml-1">
                 {#each waveShapes as shape}
                     <button
-                            class="bg-gradient-to-r {currentWaveShape === shape ? ' from-pink-500 to-pink-400' : 'from-blue-500 to-blue-300'} hover:opacity-90 transition-all duration-300 px-3 py-2 mt-2 rounded-sm mr-2"
+                            class="bg-gradient-to-r {currentWaveShape === shape ? ' from-pink-500 to-pink-400' : 'from-blue-500 to-blue-300'} hover:opacity-90 transition-all duration-300 px-3 py-2 mt-3 rounded-sm mr-2"
                             onclick={() => toggleWaveShape(shape)}
                     >{shape}</button>
                 {/each}
                 <p class="flex justify-center items-center text-gray-500 ml-3 pt-2">wave shape</p>
             </div>
+<!--            <div class="flex">-->
+<!--                -->
+<!--            </div>-->
         </div>
     </div>
 
@@ -82,19 +87,19 @@
         transition: all 0.3s ease;
     }
 
-    .circle.volume {
+    .volume {
         background: linear-gradient(145deg, #5000f1, #c19cfb);
     }
 
-    .circle.reverb {
+    .reverb {
         background: linear-gradient(145deg, #b3009b, #f080ff);
     }
 
-    .circle.lfo {
+    .lfo {
         background: linear-gradient(145deg, #b59000, #ffe9a1);
     }
 
-    .circle.pass {
+    .pass {
         background: linear-gradient(145deg, #008339, #71ff7d);
     }
 
