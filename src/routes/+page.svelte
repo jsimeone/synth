@@ -55,9 +55,20 @@
                 {/each}
                 <p class="flex justify-center items-center text-gray-500 ml-3 pt-2">wave shape</p>
             </div>
-<!--            <div class="flex">-->
-<!--                -->
-<!--            </div>-->
+
+            <div class="flex ml-2 mt-5">
+                <div class="rounded-square volume opacity-90 outline outline-1 outline-violet-400"></div>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">volume</p>
+
+                <div class="rounded-square pass opacity-90 outline outline-1 outline-green-400"></div>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">high pass / low pass</p>
+
+                <div class="rounded-square reverb opacity-90 outline outline-1 outline-pink-400"></div>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">reverb</p>
+
+                <div class="rounded-square lfo opacity-90 outline outline-1 outline-yellow-400"></div>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">lfo</p>
+            </div>
         </div>
     </div>
 
@@ -85,6 +96,14 @@
         box-shadow: 20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
         transition: all 0.3s ease;
+    }
+
+    .rounded-square {
+        width: 20px;
+        height: 20px;
+        border-radius: 20%;
+        box-shadow: 20px 20px 60px #bebebe,
+        -20px -20px 60px #ffffff;
     }
 
     .volume {
