@@ -3,6 +3,7 @@
     import VolumeFrequencyBall from "$lib/components/VolumeFrequencyBall.svelte";
     import HighLowPassBall from "$lib/components/HighLowPassBall.svelte";
     import ReverbBall from "$lib/components/ReverbBall.svelte";
+    import LFOBall from "$lib/components/LFOBall.svelte";
     import * as Tone from "tone";
 
     let toneGenerator = null;
@@ -22,6 +23,12 @@
                 running = true;
             }
         }
+    }
+
+    let lfoRunning = true;
+    function toggleLfo() {
+        lfoRunning = !lfoRunning;
+        toneGenerator.toggleLfo();
     }
 
     let currentWaveShape = "sine";
@@ -46,6 +53,13 @@
                 <p class="flex justify-center items-center text-gray-500 ml-5 pt-2">toggle generation</p>
             </div>
             <div class="flex ml-1">
+                <button
+                        class="bg-gradient-to-r {lfoRunning ? 'from-red-500 to-red-400' : 'from-yellow-500 to-yellow-400'} hover:opacity-90 px-3 py-2 transition-all duration-300 mt-2 rounded-sm"
+                        onclick={toggleLfo}
+                >{lfoRunning ? "pause" : "begin"}</button>
+                <p class="flex justify-center items-center text-gray-500 ml-5 pt-2">toggle LFO</p>
+            </div>
+            <div class="flex ml-1">
                 {#each waveShapes as shape}
                     <button
                             class="bg-gradient-to-r {currentWaveShape === shape ? ' from-pink-500 to-pink-400' : 'from-blue-500 to-blue-300'} hover:opacity-90 transition-all duration-300 px-3 py-2 mt-3 rounded-sm mr-2"
@@ -65,8 +79,8 @@
                 <div class="rounded-square reverb opacity-90 outline outline-1 outline-pink-400"></div>
                 <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">reverb</p>
 
-<!--                <div class="rounded-square lfo opacity-90 outline outline-1 outline-yellow-400"></div>-->
-<!--                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">lfo</p>-->
+                <div class="rounded-square lfo opacity-90 outline outline-1 outline-yellow-400"></div>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">lfo</p>
             </div>
         </div>
     </div>
@@ -81,9 +95,9 @@
         <ReverbBall generator={toneGenerator}>
             <div class="hover:opacity-90 circle reverb outline-4 outline outline-pink-400"></div>
         </ReverbBall>
-<!--        <LFOBall generator={toneGenerator}>-->
-<!--            <div class="hover:opacity-90 circle lfo outline-4 outline outline-yellow-400"></div>-->
-<!--        </LFOBall>-->
+        <LFOBall generator={toneGenerator}>
+            <div class="hover:opacity-90 circle lfo outline-4 outline outline-yellow-400"></div>
+        </LFOBall>
     </div>
 </div>
 
@@ -113,9 +127,9 @@
         background: linear-gradient(145deg, #b3009b, #f080ff);
     }
 
-    /*.lfo {*/
-    /*    background: linear-gradient(145deg, #b59000, #ffe9a1);*/
-    /*}*/
+    .lfo {
+        background: linear-gradient(145deg, #b59000, #ffe9a1);
+    }
 
     .pass {
         background: linear-gradient(145deg, #008339, #71ff7d);
