@@ -4,7 +4,7 @@ class ToneGenerator {
     constructor() {
         this.oscillator = new Tone.Oscillator({
             frequency: 400,
-            type: "sawtooth",
+            type: "sine",
         });
 
         this.lowpassFilter = new Tone.Filter({
