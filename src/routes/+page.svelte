@@ -3,7 +3,6 @@
     import VolumeFrequencyBall from "$lib/components/VolumeFrequencyBall.svelte";
     import HighLowPassBall from "$lib/components/HighLowPassBall.svelte";
     import ReverbBall from "$lib/components/ReverbBall.svelte";
-    import LFOBall from "$lib/components/LFOBall.svelte";
     import * as Tone from "tone";
 
     let toneGenerator = null;
@@ -58,7 +57,7 @@
 
             <div class="flex ml-2 mt-5">
                 <div class="rounded-square volume opacity-90 outline outline-1 outline-violet-400"></div>
-                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">volume</p>
+                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">volume / pitch</p>
 
                 <div class="rounded-square pass opacity-90 outline outline-1 outline-green-400"></div>
                 <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">high pass / low pass</p>
@@ -66,8 +65,8 @@
                 <div class="rounded-square reverb opacity-90 outline outline-1 outline-pink-400"></div>
                 <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">reverb</p>
 
-                <div class="rounded-square lfo opacity-90 outline outline-1 outline-yellow-400"></div>
-                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">lfo</p>
+<!--                <div class="rounded-square lfo opacity-90 outline outline-1 outline-yellow-400"></div>-->
+<!--                <p class="text-sm flex justify-center items-center text-gray-500 ml-2 mr-4">lfo</p>-->
             </div>
         </div>
     </div>
@@ -82,9 +81,9 @@
         <ReverbBall generator={toneGenerator}>
             <div class="hover:opacity-90 circle reverb outline-4 outline outline-pink-400"></div>
         </ReverbBall>
-        <LFOBall generator={toneGenerator}>
-            <div class="hover:opacity-90 circle lfo outline-4 outline outline-yellow-400"></div>
-        </LFOBall>
+<!--        <LFOBall generator={toneGenerator}>-->
+<!--            <div class="hover:opacity-90 circle lfo outline-4 outline outline-yellow-400"></div>-->
+<!--        </LFOBall>-->
     </div>
 </div>
 
@@ -114,9 +113,9 @@
         background: linear-gradient(145deg, #b3009b, #f080ff);
     }
 
-    .lfo {
-        background: linear-gradient(145deg, #b59000, #ffe9a1);
-    }
+    /*.lfo {*/
+    /*    background: linear-gradient(145deg, #b59000, #ffe9a1);*/
+    /*}*/
 
     .pass {
         background: linear-gradient(145deg, #008339, #71ff7d);

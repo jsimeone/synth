@@ -25,28 +25,29 @@ class ToneGenerator {
             wet: 0.2,
         });
 
-        // FLANGER stuff
+        // // FLANGER stuff
         this.delay = new Tone.FeedbackDelay({
             delayTime: 0.005,
             feedback: 0.5
         });
-
-        this.lfo = new Tone.LFO({
-            frequency: 0.5,
-            min: 0.001,
-            max: 0.02
-        });
+        //
+        // this.lfo = new Tone.LFO({
+        //     frequency: 0.5,
+        //     min: 0.001,
+        //     max: 0.02
+        // });
 
         this.running = false;
         this.connectNodes();
     }
 
     connectNodes() {
+        this.oscillator.connect(this.lowpassFilter);
+        // this.lfo.connect(this.delay.delayTime);
         this.oscillator.connect(this.delay);
         this.delay.connect(this.lowpassFilter);
         this.lowpassFilter.connect(this.highpassFilter);
         this.highpassFilter.connect(this.reverb);
-        this.lfo.connect(this.delay.delayTime);
         this.reverb.toDestination();
     }
 
@@ -80,10 +81,10 @@ class ToneGenerator {
         this.reverb.wet.value = Math.min(Math.max(wetMix, 0.01), 1);
     }
 
-    setLFO(freq, feedback) {
-        this.lfo.frequency.value = freq;
-        this.delay.feedback.value = Math.min(Math.max(feedback, 0.01), 1);
-    }
+    // setLFO(freq, feedback) {
+    //     this.lfo.frequency.value = freq;
+    //     this.delay.feedback.value = Math.min(Math.max(feedback, 0.01), 1);
+    // }
 }
 
 export default ToneGenerator;
